@@ -1,0 +1,907 @@
+:root {
+  --ivory: #fff9f2;
+  --paper: #fffdf8;
+  --blush: #f6d8d0;
+  --red: #c9162e;
+  --red-deep: #5c0712;
+  --ink: #171111;
+  --charcoal: #24191a;
+  --gold: #d8a84f;
+  --green: #14382d;
+  --muted: #725d5b;
+  --line: rgba(92, 7, 18, 0.18);
+  --focus: rgba(201, 22, 46, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "Segoe UI", "Avenir Next", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.hero {
+  position: relative;
+  min-height: 88svh;
+  overflow: hidden;
+  color: #fff;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(90deg, rgba(18, 7, 8, 0.9) 0%, rgba(18, 7, 8, 0.76) 38%, rgba(18, 7, 8, 0.18) 72%),
+    linear-gradient(0deg, rgba(18, 7, 8, 0.55), rgba(18, 7, 8, 0.08) 42%),
+    url("/aura-campus-wedding-hero.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(90deg, #000, transparent 70%);
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links a,
+.nav-cart {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(23, 17, 17, 0.34);
+  color: #fff;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(12px);
+}
+
+.nav-cart span {
+  min-width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.hero-content {
+  min-height: calc(88svh - 72px);
+  padding: 48px 0 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.badge,
+.kicker {
+  width: fit-content;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.badge {
+  padding: 8px 11px;
+  color: #fff;
+  background: rgba(201, 22, 46, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 4.8rem;
+  line-height: 0.86;
+}
+
+.tagline {
+  margin: 18px 0 0;
+  max-width: 620px;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.hero-copy {
+  max-width: 650px;
+  margin: 18px 0 0;
+  color: #ffe8df;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn {
+  min-height: 46px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 900;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.66;
+  transform: none;
+}
+
+.btn-light {
+  color: var(--red-deep);
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.btn-outline-light {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.btn-red {
+  color: #fff;
+  background: var(--red);
+  box-shadow: 0 14px 26px rgba(201, 22, 46, 0.24);
+}
+
+.ribbon {
+  min-height: 12svh;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--ink);
+  color: #fff;
+  scrollbar-width: none;
+}
+
+.ribbon::-webkit-scrollbar {
+  display: none;
+}
+
+.ribbon span {
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 12px;
+  font-weight: 900;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.manifesto {
+  background: var(--ivory);
+}
+
+.manifesto-grid,
+.package-grid,
+.booking-grid,
+.fine-grid,
+.faq-grid {
+  display: grid;
+  gap: 28px;
+}
+
+.kicker {
+  color: var(--red);
+}
+
+h2 {
+  font-size: 2.15rem;
+  line-height: 1;
+}
+
+h3 {
+  font-size: 1.35rem;
+  line-height: 1.05;
+}
+
+.lead,
+.sub {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.sub {
+  margin: 12px 0 0;
+}
+
+.offers-section {
+  background:
+    linear-gradient(180deg, #fffaf5 0%, #f7e5df 100%);
+}
+
+.section-head {
+  margin-bottom: 24px;
+}
+
+.offers-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.offer-card {
+  min-height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(92, 7, 18, 0.08);
+}
+
+.offer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+}
+
+.offer-card-featured {
+  background: var(--charcoal);
+  color: #fff;
+}
+
+.offer-card-featured .offer-copy,
+.offer-card-featured .feature-list,
+.offer-card-featured .price span {
+  color: #f3d7d0;
+}
+
+.offer-card-featured .note {
+  color: #2b1518;
+}
+
+.offer-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.icon-shell {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #ffe6df;
+  color: var(--red);
+}
+
+.offer-mood {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.offer-card-featured .offer-mood {
+  color: #ffd56f;
+}
+
+.price {
+  margin: 14px 0 10px;
+  font-size: 1.22rem;
+  font-weight: 900;
+}
+
+.price span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.offer-copy {
+  color: #4d3d3b;
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  color: #604e4d;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px 0;
+  line-height: 1.35;
+}
+
+.feature-list svg {
+  flex: 0 0 auto;
+  color: var(--red);
+  margin-top: 2px;
+}
+
+.note {
+  margin: 0 0 14px;
+  padding: 10px;
+  border-left: 4px solid var(--red);
+  background: #fff0e9;
+  color: #4a2e2d;
+  line-height: 1.45;
+}
+
+.offer-card .btn {
+  width: 100%;
+  margin-top: auto;
+}
+
+.package-strip {
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(92, 7, 18, 0.96), rgba(23, 17, 17, 0.98)),
+    url("/aura-campus-wedding-hero.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.package-strip .kicker,
+.package-strip .lead {
+  color: #ffe2d9;
+}
+
+.combo-list {
+  display: grid;
+  gap: 10px;
+}
+
+.combo-list p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 13px 0;
+  font-weight: 800;
+}
+
+.process {
+  background: var(--paper);
+}
+
+.steps {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.step {
+  border-top: 2px solid var(--red);
+  padding-top: 14px;
+}
+
+.step span {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.step h3 {
+  margin: 8px 0;
+}
+
+.step p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.booking-section {
+  background: #f7e5df;
+}
+
+.booking-summary {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--red-deep);
+  color: #fff;
+  padding: 20px;
+  align-self: start;
+}
+
+.booking-summary .kicker {
+  color: #ffd56f;
+}
+
+.booking-summary h2 {
+  font-family: "Segoe UI", "Avenir Next", sans-serif;
+  font-size: 2rem;
+}
+
+.booking-summary p {
+  color: #ffdcd4;
+  line-height: 1.6;
+}
+
+.summary-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.summary-icons svg {
+  width: 38px;
+  height: 38px;
+  padding: 9px;
+  color: var(--red-deep);
+  background: #fff;
+  border-radius: 999px;
+}
+
+.booking-form {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: #382827;
+  font-weight: 800;
+}
+
+input,
+textarea {
+  width: 100%;
+  min-height: 45px;
+  border: 1px solid rgba(92, 7, 18, 0.24);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 11px 12px;
+  outline: none;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px var(--focus);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.check input {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin-top: 2px;
+}
+
+.success {
+  margin-top: 16px;
+  border: 1px solid rgba(20, 56, 45, 0.24);
+  border-radius: 8px;
+  background: #eaf8ef;
+  color: var(--green);
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.error {
+  margin-top: 16px;
+  border: 1px solid rgba(201, 22, 46, 0.28);
+  border-radius: 8px;
+  background: #fff0f1;
+  color: var(--red-deep);
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.fine-print {
+  background: var(--ivory);
+}
+
+.fine-list {
+  display: grid;
+  gap: 10px;
+}
+
+.fine-list p {
+  margin: 0;
+  border-left: 3px solid var(--red);
+  padding: 0 0 0 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.faq-section {
+  background: var(--paper);
+}
+
+.faq {
+  display: grid;
+  gap: 8px;
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 14px;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.faq p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.footer {
+  background: var(--ink);
+  color: #fff;
+  padding: 44px 0 92px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 22px;
+  align-items: center;
+}
+
+.footer h2 {
+  font-size: 3rem;
+}
+
+.mini {
+  color: #cdbab8;
+}
+
+.sticky-cart {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 45;
+  min-height: 46px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 12px 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+.sticky-cart strong {
+  min-width: 26px;
+  height: 26px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--red);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(23, 17, 17, 0.5);
+  transition: opacity 180ms ease;
+}
+
+.backdrop.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.cart-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 49;
+  width: min(430px, 100%);
+  height: 100dvh;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 220ms ease;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  padding: 18px;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cart-head h3 {
+  margin-top: 0;
+}
+
+.cart-head button,
+.quantity button,
+.cart-price button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  display: inline-grid;
+  place-items: center;
+}
+
+.cart-head button {
+  width: 38px;
+  height: 38px;
+}
+
+.empty-cart {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cart-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 13px;
+  margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cart-item p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity button,
+.cart-price button {
+  width: 30px;
+  height: 30px;
+}
+
+.quantity span {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.cart-price {
+  display: grid;
+  justify-items: end;
+}
+
+.cart-total {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  margin: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.15rem;
+}
+
+@media (min-width: 720px) {
+  .container {
+    width: min(1120px, calc(100% - 48px));
+  }
+
+  h1 {
+    font-size: 8.2rem;
+  }
+
+  h2 {
+    font-size: 3.1rem;
+  }
+
+  .tagline {
+    font-size: 1.75rem;
+  }
+
+  .manifesto-grid,
+  .package-grid,
+  .booking-grid,
+  .fine-grid,
+  .faq-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+
+  .offers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .booking-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .booking-form label:has(textarea),
+  .booking-form .check,
+  .booking-form button {
+    grid-column: span 2;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+@media (min-width: 1040px) {
+  h1 {
+    font-size: 10rem;
+  }
+
+  .hero-copy {
+    font-size: 1.08rem;
+  }
+
+  .offers-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .offer-card-featured {
+    transform: translateY(-10px);
+  }
+
+  .booking-summary {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .nav-links a {
+    display: none;
+  }
+
+  h1 {
+    font-size: 4.2rem;
+  }
+
+  .hero-copy {
+    font-size: 0.96rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+}
