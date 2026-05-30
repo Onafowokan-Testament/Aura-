@@ -7,12 +7,20 @@ function wantsJson(request: Request) {
 export async function POST(request: Request) {
   const endpoint = process.env.FORMSUBMIT_ENDPOINT;
 
+  console.log("DEBUG: FORMSUBMIT_ENDPOINT =", endpoint);
+
   if (!endpoint) {
     if (wantsJson(request)) {
-      return NextResponse.json({ error: "Missing form endpoint" }, { status: 500 });
+      return NextResponse.json(
+        { error: "Missing form endpoint" },
+        { status: 500 },
+      );
     }
 
-    return NextResponse.redirect(new URL("/?booking=error#booking", request.url), 303);
+    return NextResponse.redirect(
+      new URL("/?booking=error#booking", request.url),
+      303,
+    );
   }
 
   const formData = await request.formData();
@@ -27,15 +35,24 @@ export async function POST(request: Request) {
 
   if (!response.ok) {
     if (wantsJson(request)) {
-      return NextResponse.json({ error: "Booking submission failed" }, { status: 502 });
+      return NextResponse.json(
+        { error: "Booking submission failed" },
+        { status: 502 },
+      );
     }
 
-    return NextResponse.redirect(new URL("/?booking=error#booking", request.url), 303);
+    return NextResponse.redirect(
+      new URL("/?booking=error#booking", request.url),
+      303,
+    );
   }
 
   if (wantsJson(request)) {
     return NextResponse.json({ ok: true });
   }
 
-  return NextResponse.redirect(new URL("/?booking=success#booking", request.url), 303);
+  return NextResponse.redirect(
+    new URL("/?booking=success#booking", request.url),
+    303,
+  );
 }
