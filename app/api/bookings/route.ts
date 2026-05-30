@@ -5,23 +5,7 @@ function wantsJson(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const endpoint = process.env.FORMSUBMIT_ENDPOINT;
-
-  console.log("DEBUG: FORMSUBMIT_ENDPOINT =", endpoint);
-
-  if (!endpoint) {
-    if (wantsJson(request)) {
-      return NextResponse.json(
-        { error: "Missing form endpoint" },
-        { status: 500 },
-      );
-    }
-
-    return NextResponse.redirect(
-      new URL("/?booking=error#booking", request.url),
-      303,
-    );
-  }
+  const endpoint = "https://formsubmit.co/thetestamentonafowokan@gmail.com";
 
   const formData = await request.formData();
 
