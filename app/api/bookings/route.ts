@@ -38,8 +38,16 @@ export async function POST(request: Request) {
       html: emailContent,
     });
 
-    if (!response.id) {
-      throw new Error("Failed to send email");
+    console.log("Resend response:", response);
+
+    if (response.error) {
+      console.error("Resend error:", response.error);
+      throw new Error(`Resend API error: ${response.error.message}`);
+    }
+
+    if (!response.data?.id) {
+      console.error("No email ID in response:", response);
+      throw new Error("Failed to send email - no ID returned");
     }
 
     if (wantsJson(request)) {
