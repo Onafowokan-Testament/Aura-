@@ -42,42 +42,6 @@ type CartItem = {
 
 const offers: Offer[] = [
   {
-    id: "normal-joyride",
-    name: "Normal Joyride",
-    price: 10000,
-    unitLabel: "per ride",
-    mood: "Soft life entry",
-    description:
-      "You cannot be walking under the sun with your babe. God forbid rain now joins. Show her you have class.",
-    features: [
-      "One-way ride to the event",
-      "Normal car",
-      "Bodyguard-style escort",
-      "Door opening",
-      "Load carrying",
-      "Photo/video not included",
-    ],
-    icon: "car",
-  },
-  {
-    id: "suv-joyride",
-    name: "SUV Joyride",
-    price: 70000,
-    unitLabel: "per ride",
-    mood: "Main character arrival",
-    description:
-      "For the people who want their entrance to announce itself before they even step out.",
-    features: [
-      "One-way SUV ride to the event",
-      "Bodyguard-style escort",
-      "Door opening",
-      "Load carrying",
-      "Premium arrival feel",
-      "Photo/video not included",
-    ],
-    icon: "shield",
-  },
-  {
     id: "spray-prop-bundle",
     name: "Spray Prop Bundle",
     price: 20000,
@@ -149,9 +113,7 @@ const offers: Offer[] = [
 ];
 
 const combos = [
-  "Joyride + Couple Website Feature",
   "Spray Prop Bundle + Couple Website Feature",
-  "SUV Joyride + Premium Spray Bundle + Personalized Love Page",
   "Personalized Love Page + Couple Website Feature",
 ];
 
@@ -175,14 +137,24 @@ const steps = [
 ];
 
 const faqs = [
-  ["Can I buy only one service?", "Yes. You can buy individually. You do not have to buy a full package."],
+  [
+    "Can I buy only one service?",
+    "Yes. You can buy individually. You do not have to buy a full package.",
+  ],
   ["Is the spray prop rented or bought?", "It is bought, not rented."],
-  ["Does the joyride include return trip?", "No. It is one-way to the event."],
-  ["Does the joyride include pictures or videos?", "No. Photo and video are not included."],
-  ["Is the personalized love page public?", "No. It is password-protected for just both of you."],
-  ["Can I feature myself and my babe on the wedding website?", "Yes. You will send your names, pictures, and what you want to say."],
+  [
+    "Is the personalized love page public?",
+    "No. It is password-protected for just both of you.",
+  ],
+  [
+    "Can I feature myself and my babe on the wedding website?",
+    "Yes. You will send your names, pictures, and what you want to say.",
+  ],
   ["Can we be Couple of the Day?", "Yes, based on availability and selection."],
-  ["What happens if a service is not provided?", "Your money will be fully refunded, plus a small apology gift."],
+  [
+    "What happens if a service is not provided?",
+    "Your money will be fully refunded, plus a small apology gift.",
+  ],
 ];
 
 function formatMoney(amount: number): string {
@@ -195,10 +167,13 @@ function formatMoney(amount: number): string {
 
 function Icon({ name }: { name: OfferIcon }) {
   if (name === "car") return <Car aria-hidden size={21} strokeWidth={2.2} />;
-  if (name === "shield") return <ShieldCheck aria-hidden size={21} strokeWidth={2.2} />;
-  if (name === "spray") return <SprayCan aria-hidden size={21} strokeWidth={2.2} />;
+  if (name === "shield")
+    return <ShieldCheck aria-hidden size={21} strokeWidth={2.2} />;
+  if (name === "spray")
+    return <SprayCan aria-hidden size={21} strokeWidth={2.2} />;
   if (name === "gift") return <Gift aria-hidden size={21} strokeWidth={2.2} />;
-  if (name === "globe") return <Globe aria-hidden size={21} strokeWidth={2.2} />;
+  if (name === "globe")
+    return <Globe aria-hidden size={21} strokeWidth={2.2} />;
   return <Heart aria-hidden size={21} strokeWidth={2.2} />;
 }
 
@@ -216,7 +191,10 @@ export default function HomePage() {
   );
   const cartSummary =
     cart
-      .map((item) => `${item.offer.name} x${item.quantity} (${formatMoney(item.offer.price * item.quantity)})`)
+      .map(
+        (item) =>
+          `${item.offer.name} x${item.quantity} (${formatMoney(item.offer.price * item.quantity)})`,
+      )
       .join(" | ") || "No items selected";
 
   function addToCart(offer: Offer) {
@@ -224,7 +202,9 @@ export default function HomePage() {
       const existing = prev.find((item) => item.offer.id === offer.id);
       if (existing) {
         return prev.map((item) =>
-          item.offer.id === offer.id ? { ...item, quantity: item.quantity + 1 } : item,
+          item.offer.id === offer.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
         );
       }
       return [...prev, { offer, quantity: 1 }];
@@ -274,7 +254,9 @@ export default function HomePage() {
       setSubmitted(true);
       setCart([]);
     } catch {
-      setSubmitError("Something went wrong while sending your booking. Please try again.");
+      setSubmitError(
+        "Something went wrong while sending your booking. Please try again.",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -284,11 +266,17 @@ export default function HomePage() {
     <main>
       <header className="hero" id="top">
         <nav className="nav container" aria-label="Primary navigation">
-          <a href="#top" className="brand-mark">Aura+</a>
+          <a href="#top" className="brand-mark">
+            Aura+
+          </a>
           <div className="nav-links">
             <a href="#offers">Offers</a>
             <a href="#booking">Booking</a>
-            <button className="nav-cart" onClick={() => setCartOpen(true)} aria-label="Open cart">
+            <button
+              className="nav-cart"
+              onClick={() => setCartOpen(true)}
+              aria-label="Open cart"
+            >
               <ShoppingBag size={17} />
               <span>{cartCount}</span>
             </button>
@@ -325,9 +313,10 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16 }}
           >
-            Fake wedding season is here. And yes, we know it is fake. You know it is fake. But from the fake, we can
-            still make something real. Show up with class, say your heart, and give your babe a moment they will not
-            forget.
+            Fake wedding season is here. And yes, we know it is fake. You know
+            it is fake. But from the fake, we can still make something real.
+            Show up with class, say your heart, and give your babe a moment they
+            will not forget.
           </motion.p>
           <motion.div
             className="hero-actions"
@@ -358,9 +347,11 @@ export default function HomePage() {
             <h2>Fake event. Real memory. Premium evidence.</h2>
           </div>
           <p className="lead">
-            This is the best time to look serious, act serious, and package the moment well. Whether it is a fake
-            wedding, a fake event, a proposal, a love page, or just you trying to show your babe that you are not
-            completely unserious in this life, Aura+ helps you make the moment feel premium.
+            This is the best time to look serious, act serious, and package the
+            moment well. Whether it is a fake wedding, a fake event, a proposal,
+            a love page, or just you trying to show your babe that you are not
+            completely unserious in this life, Aura+ helps you make the moment
+            feel premium.
           </p>
         </div>
       </section>
@@ -369,7 +360,10 @@ export default function HomePage() {
         <div className="container section-head">
           <p className="kicker">The Aura Menu</p>
           <h2>Choose the pressure you want to apply.</h2>
-          <p className="sub">Start small, combine services, or arrive like the chairman of fake wedding season.</p>
+          <p className="sub">
+            Start small, combine services, or arrive like the chairman of fake
+            wedding season.
+          </p>
         </div>
 
         <div className="container offers-grid">
@@ -383,21 +377,28 @@ export default function HomePage() {
               transition={{ duration: 0.35, delay: index * 0.04 }}
             >
               <div className="offer-card-top">
-                <span className="icon-shell"><Icon name={offer.icon} /></span>
+                <span className="icon-shell">
+                  <Icon name={offer.icon} />
+                </span>
                 <span className="offer-mood">{offer.mood}</span>
               </div>
               <h3>{offer.name}</h3>
               <p className="price">
-                {formatMoney(offer.price)} {offer.unitLabel ? <span>{offer.unitLabel}</span> : null}
+                {formatMoney(offer.price)}{" "}
+                {offer.unitLabel ? <span>{offer.unitLabel}</span> : null}
               </p>
               <p className="offer-copy">{offer.description}</p>
               <ul className="feature-list">
                 {offer.features.map((feature) => (
-                  <li key={feature}><CheckCircle2 size={15} /> {feature}</li>
+                  <li key={feature}>
+                    <CheckCircle2 size={15} /> {feature}
+                  </li>
                 ))}
               </ul>
               {offer.note ? <p className="note">{offer.note}</p> : null}
-              {offer.funnyLine ? <p className="note">{offer.funnyLine}</p> : null}
+              {offer.funnyLine ? (
+                <p className="note">{offer.funnyLine}</p>
+              ) : null}
               <button className="btn btn-red" onClick={() => addToCart(offer)}>
                 <Plus size={17} /> Add to Cart
               </button>
@@ -412,13 +413,16 @@ export default function HomePage() {
             <p className="kicker">Build your scene</p>
             <h2>No pressure. Unless you want pressure.</h2>
             <p className="lead">
-              Pick only what you want. You can book one thing, or combine different Aura+ services to create your own
-              main-character package.
+              Pick only what you want. You can book one thing, or combine
+              different Aura+ services to create your own main-character
+              package.
             </p>
           </div>
           <div className="combo-list">
             {combos.map((combo) => (
-              <p key={combo}><Sparkles size={16} /> {combo}</p>
+              <p key={combo}>
+                <Sparkles size={16} /> {combo}
+              </p>
             ))}
           </div>
         </div>
@@ -456,44 +460,128 @@ export default function HomePage() {
 
           <div>
             <p className="kicker">Book it</p>
-            <h2>Say your heart. If anything happens later, say you were joking.</h2>
-            <form action="/api/bookings" method="POST" className="booking-form" onSubmit={handleSubmit}>
+            <h2>
+              Say your heart. If anything happens later, say you were joking.
+            </h2>
+            <form
+              action="/api/bookings"
+              method="POST"
+              className="booking-form"
+              onSubmit={handleSubmit}
+            >
               <input type="hidden" name="_subject" value="New Aura+ Booking" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="Selected Services (summary)" value={cartSummary} />
-              <input type="hidden" name="Total Amount (raw)" value={`${total}`} />
+              <input
+                type="hidden"
+                name="Selected Services (summary)"
+                value={cartSummary}
+              />
+              <input
+                type="hidden"
+                name="Total Amount (raw)"
+                value={`${total}`}
+              />
 
-              <label>Full name<input name="full_name" required /></label>
-              <label>WhatsApp number<input name="whatsapp" required /></label>
-              <label>Email address<input name="email" type="email" required /></label>
-              <label>Are you booking for yourself or someone else?<input name="booking_for" required /></label>
-              <label>Your name as it should appear<input name="your_display_name" required /></label>
-              <label>Babe's name as it should appear<input name="babe_display_name" required /></label>
-              <label>What are you booking?<textarea name="what_are_you_booking" readOnly value={cartSummary} /></label>
-              <label>Total amount<input name="total_amount" readOnly value={formatMoney(total)} /></label>
-              <label>Event date<input name="event_date" type="date" required /></label>
-              <label>Event time<input name="event_time" type="time" required /></label>
-              <label>Pickup location, if booking Joyride<input name="pickup_location" /></label>
-              <label>Drop-off/event location<input name="event_location" required /></label>
-              <label>Upload picture link / Google Drive link<input name="picture_link" /></label>
-              <label>What do you want to say?<textarea name="what_you_want_to_say" /></label>
-              <label>Preferred music, if booking personalized love page<input name="preferred_music" /></label>
-              <label>Countdown date, if booking personalized love page<input name="countdown_date" type="date" /></label>
-              <label>Gift note or preference, if booking spray prop bundle<textarea name="gift_note" /></label>
-              <label>Extra instructions<textarea name="extra_instructions" /></label>
+              <label>
+                Full name
+                <input name="full_name" required />
+              </label>
+              <label>
+                WhatsApp number
+                <input name="whatsapp" required />
+              </label>
+              <label>
+                Email address
+                <input name="email" type="email" required />
+              </label>
+              <label>
+                Are you booking for yourself or someone else?
+                <input name="booking_for" required />
+              </label>
+              <label>
+                Your name as it should appear
+                <input name="your_display_name" required />
+              </label>
+              <label>
+                Babe's name as it should appear
+                <input name="babe_display_name" required />
+              </label>
+              <label>
+                What are you booking?
+                <textarea
+                  name="what_are_you_booking"
+                  readOnly
+                  value={cartSummary}
+                />
+              </label>
+              <label>
+                Total amount
+                <input
+                  name="total_amount"
+                  readOnly
+                  value={formatMoney(total)}
+                />
+              </label>
+              <label>
+                Event date
+                <input name="event_date" type="date" required />
+              </label>
+              <label>
+                Event time
+                <input name="event_time" type="time" required />
+              </label>
+              <label>
+                Event location
+                <input name="event_location" required />
+              </label>
+              <label>
+                Upload picture link / Google Drive link
+                <input name="picture_link" />
+              </label>
+              <label>
+                What do you want to say?
+                <textarea name="what_you_want_to_say" />
+              </label>
+              <label>
+                Preferred music, if booking personalized love page
+                <input name="preferred_music" />
+              </label>
+              <label>
+                Countdown date, if booking personalized love page
+                <input name="countdown_date" type="date" />
+              </label>
+              <label>
+                Gift note or preference, if booking spray prop bundle
+                <textarea name="gift_note" />
+              </label>
+              <label>
+                Extra instructions
+                <textarea name="extra_instructions" />
+              </label>
 
-              <label className="check"><input type="checkbox" required /> I confirm that the details I provided are correct.</label>
-              <label className="check"><input type="checkbox" required /> I understand that my booking is only confirmed after payment and confirmation.</label>
+              <label className="check">
+                <input type="checkbox" required /> I confirm that the details I
+                provided are correct.
+              </label>
+              <label className="check">
+                <input type="checkbox" required /> I understand that my booking
+                is only confirmed after payment and confirmation.
+              </label>
 
-              <button className="btn btn-red" type="submit" disabled={submitting}>
+              <button
+                className="btn btn-red"
+                type="submit"
+                disabled={submitting}
+              >
                 {submitting ? "Submitting..." : "Submit Booking"}
               </button>
             </form>
             {submitError ? <p className="error">{submitError}</p> : null}
             {submitted ? (
               <p className="success">
-                Your Aura+ booking has been received. We will reach out to confirm the details. More love. More life.
+                Your Aura+ booking has been received. We will reach out to
+                confirm the details. More love. More life.
               </p>
             ) : null}
           </div>
@@ -507,12 +595,25 @@ export default function HomePage() {
             <h2>For fun, content, romance, and aura support.</h2>
           </div>
           <div className="fine-list">
-            <p>Money/spray props are for fun, content, and event entertainment only. They are not real currency and should not be used as real money.</p>
-            <p>Joyrides are one-way rides and are subject to vehicle availability.</p>
-            <p>Bodyguard-style escort means entrance assistance, door opening, load carrying, and aura support. It is not a professional security service.</p>
-            <p>Photo and video coverage are not included unless agreed separately.</p>
+            <p>
+              Money/spray props are for fun, content, and event entertainment
+              only. They are not real currency and should not be used as real
+              money.
+            </p>
+            <p>
+              Bodyguard-style escort means entrance assistance, door opening,
+              load carrying, and aura support. It is not a professional security
+              service.
+            </p>
+            <p>
+              Photo and video coverage are not included unless agreed
+              separately.
+            </p>
             <p>Booking is only confirmed after payment and confirmation.</p>
-            <p>If any paid service is not provided, your money will be fully refunded, plus a small apology gift.</p>
+            <p>
+              If any paid service is not provided, your money will be fully
+              refunded, plus a small apology gift.
+            </p>
           </div>
         </div>
       </section>
@@ -541,7 +642,9 @@ export default function HomePage() {
             <p>Make your campus love look expensive.</p>
             <p className="mini">Built for CU fake wedding season.</p>
           </div>
-          <a className="btn btn-light" href="#booking">Book Your Aura <ArrowRight size={17} /></a>
+          <a className="btn btn-light" href="#booking">
+            Book Your Aura <ArrowRight size={17} />
+          </a>
         </div>
       </footer>
 
@@ -549,17 +652,29 @@ export default function HomePage() {
         <ShoppingBag size={17} /> <span>Cart</span> <strong>{cartCount}</strong>
       </button>
 
-      <div className={`backdrop ${cartOpen ? "show" : ""}`} onClick={() => setCartOpen(false)} />
-      <aside className={`cart-drawer ${cartOpen ? "open" : ""}`} aria-label="Shopping cart">
+      <div
+        className={`backdrop ${cartOpen ? "show" : ""}`}
+        onClick={() => setCartOpen(false)}
+      />
+      <aside
+        className={`cart-drawer ${cartOpen ? "open" : ""}`}
+        aria-label="Shopping cart"
+      >
         <div className="cart-head">
           <div>
             <p className="kicker">Aura cart</p>
             <h3>Your selected pressure</h3>
           </div>
-          <button onClick={() => setCartOpen(false)} aria-label="Close cart"><X size={18} /></button>
+          <button onClick={() => setCartOpen(false)} aria-label="Close cart">
+            <X size={18} />
+          </button>
         </div>
 
-        {cart.length === 0 ? <p className="empty-cart">Your cart is empty for now. Romance is waiting.</p> : null}
+        {cart.length === 0 ? (
+          <p className="empty-cart">
+            Your cart is empty for now. Romance is waiting.
+          </p>
+        ) : null}
 
         {cart.map((item) => (
           <div className="cart-item" key={item.offer.id}>
@@ -567,18 +682,27 @@ export default function HomePage() {
               <strong>{item.offer.name}</strong>
               <p>{formatMoney(item.offer.price)} each</p>
               <div className="quantity">
-                <button onClick={() => changeQuantity(item.offer.id, -1)} aria-label={`Reduce ${item.offer.name}`}>
+                <button
+                  onClick={() => changeQuantity(item.offer.id, -1)}
+                  aria-label={`Reduce ${item.offer.name}`}
+                >
                   <Minus size={14} />
                 </button>
                 <span>{item.quantity}</span>
-                <button onClick={() => changeQuantity(item.offer.id, 1)} aria-label={`Increase ${item.offer.name}`}>
+                <button
+                  onClick={() => changeQuantity(item.offer.id, 1)}
+                  aria-label={`Increase ${item.offer.name}`}
+                >
                   <Plus size={14} />
                 </button>
               </div>
             </div>
             <div className="cart-price">
               <p>{formatMoney(item.offer.price * item.quantity)}</p>
-              <button onClick={() => removeFromCart(item.offer.id)} aria-label={`Remove ${item.offer.name}`}>
+              <button
+                onClick={() => removeFromCart(item.offer.id)}
+                aria-label={`Remove ${item.offer.name}`}
+              >
                 <Trash2 size={15} />
               </button>
             </div>
@@ -589,7 +713,11 @@ export default function HomePage() {
           <span>Total</span>
           <strong>{formatMoney(total)}</strong>
         </div>
-        <a href="#booking" className="btn btn-red" onClick={() => setCartOpen(false)}>
+        <a
+          href="#booking"
+          className="btn btn-red"
+          onClick={() => setCartOpen(false)}
+        >
           Proceed to Booking
         </a>
       </aside>
